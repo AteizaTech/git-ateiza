@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
-import SplashGuard from "../components/SplashGuard";
 import HeroMatrix from "../components/HeroMatrix";
 import ProjectsGrid from "../components/ProjectsGrid";
 import EducationGateway from "../components/EducationGateway";
@@ -14,8 +13,6 @@ import ThemeToggle from "../components/ThemeToggle";
 export default function Home() {
   return (
     <div className={styles.pageContainer}>
-      {/* Viewport block entrance */}
-      <SplashGuard />
 
       {/* Cybernetic ambient backgrounds */}
       <div className={styles.bgGlow}>
