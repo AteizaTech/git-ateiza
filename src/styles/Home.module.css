@@ -1,0 +1,377 @@
+/* Homepage Structural Layout Styles */
+
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-obsidian);
+  position: relative;
+}
+
+/* Background Gradients */
+.bgGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glowCyan {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.05) 0%, rgba(0, 242, 254, 0) 70%);
+}
+
+.glowViolet {
+  position: absolute;
+  top: 40%;
+  right: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(161, 84, 255, 0.04) 0%, rgba(161, 84, 255, 0) 70%);
+}
+
+/* Structural Layouts */
+.header {
+  height: var(--header-height);
+  border-bottom: 1px solid var(--border-muted);
+  backdrop-filter: var(--glass-blur);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--bg-surface);
+}
+
+.headerInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoIcon {
+  color: var(--accent-violet);
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+}
+
+.themeToggle {
+  appearance: none;
+  border: 1px solid var(--border-muted);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-radius: 999px;
+  padding: 5px 9px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 0.75rem var(--font-mono);
+}
+
+.themeToggle:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.navLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--text-primary);
+}
+
+.mainContent {
+  flex-grow: 1;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border-muted);
+}
+
+.sectionHeader {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.sectionTitle {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.sectionActionLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.sectionActionLink:hover {
+  color: var(--accent-cyan);
+  transform: translateX(4px);
+}
+
+
+/* ==========================================================================
+   Education Gateway Highlight Card
+   ========================================================================== */
+.eduGatewayCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-muted);
+  border-radius: 12px;
+  padding: 40px;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.eduGatewayCard:hover {
+  border-color: var(--accent-violet);
+  transform: translateY(-4px);
+  animation: pulseVioletGlow 3s infinite;
+}
+
+.eduGatewayContent {
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eduInstitution {
+  font-family: var(--font-mono);
+  color: var(--accent-violet);
+  font-size: 0.9rem;
+}
+
+.eduDegree {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.eduDescription {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.eduArrow {
+  font-size: 2rem;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.eduGatewayCard:hover .eduArrow {
+  color: var(--accent-violet);
+  transform: translateX(8px);
+}
+
+
+/* ==========================================================================
+   Writing Homepage Block
+   ========================================================================== */
+.writingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.articleCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-muted);
+  border-radius: 8px;
+  padding: 24px;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.articleCard:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+.articleMeta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-cyan);
+  margin-bottom: 8px;
+}
+
+.articleTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.articleExcerpt {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.articleReadMore {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.articleCard:hover .articleReadMore {
+  color: var(--accent-cyan);
+}
+
+
+/* ==========================================================================
+   Footer Component
+   ========================================================================== */
+.footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border-muted);
+  margin-top: 60px;
+  text-align: center;
+}
+
+.footerInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.footerLogo {
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  text-decoration: none;
+}
+
+.footerSocials {
+  display: flex;
+  gap: 16px;
+}
+
+.socialLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.socialLink:hover {
+  color: var(--accent-cyan);
+}
+
+
+/* ==========================================================================
+   Responsive Layout Styles
+   ========================================================================== */
+@media (max-width: 768px) {
+  .headerInner {
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+  .nav {
+    gap: 12px;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .themeToggleLabel { display: none; }
+  .eduGatewayCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .eduGatewayContent {
+    max-width: 100%;
+  }
+  .eduArrow {
+    transform: rotate(90deg);
+  }
+  .eduGatewayCard:hover .eduArrow {
+    transform: rotate(90deg) translateY(8px);
+  }
+  .footerInner {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

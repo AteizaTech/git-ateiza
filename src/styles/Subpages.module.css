@@ -1,0 +1,433 @@
+/* Stylesheet for Portfolio Subpages: Projects, Timeline, and Writing Archives */
+
+.subpageHeader {
+  padding: 120px 0 40px 0;
+  border-bottom: 1px solid var(--border-muted);
+  margin-bottom: 50px;
+}
+
+.backLink {
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  text-decoration: none;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  transition: transform 0.2s ease;
+}
+
+.backLink:hover {
+  transform: translateX(-4px);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+
+/* ==========================================================================
+   Projects Subpage Extensions
+   ========================================================================= */
+.sectionSpacer {
+  margin-bottom: 60px;
+}
+
+.subSectionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 30px;
+  border-left: 3px solid var(--accent-cyan);
+  padding-left: 14px;
+}
+
+/* Secondary projects grid */
+.secondaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 80px;
+}
+
+.secondaryCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-muted);
+  border-radius: 8px;
+  padding: 28px;
+  backdrop-filter: var(--glass-blur);
+  transition: all 0.3s ease;
+}
+
+.secondaryCard:hover {
+  border-color: var(--border-violet-glow);
+  transform: translateY(-2px);
+}
+
+.cardTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-muted);
+  padding-top: 16px;
+  margin-bottom: 16px;
+}
+
+.detailRow {
+  display: flex;
+  gap: 8px;
+}
+
+.detailLabel {
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  min-width: 90px;
+}
+
+.detailVal {
+  color: var(--text-secondary);
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cardBadge {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-muted);
+  color: var(--text-secondary);
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+}
+
+.cardLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.cardLink:hover {
+  color: var(--accent-cyan);
+}
+
+/* Active Lab Terminal Ledger */
+.terminalContainer {
+  background: rgba(5, 5, 8, 0.85);
+  border: 1px solid var(--border-muted);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: var(--glass-blur);
+  font-family: var(--font-mono);
+}
+
+.terminalHeader {
+  background: rgba(20, 20, 30, 0.6);
+  border-bottom: 1px solid var(--border-muted);
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terminalDots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dotRed { background: #ff5f56; }
+.dotYellow { background: #ffbd2e; }
+.dotGreen { background: #27c93f; }
+
+.terminalTitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.terminalOutput {
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.terminalHeaderRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-muted);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  min-width: 600px;
+}
+
+.terminalBody {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+}
+
+.terminalRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  font-size: 0.85rem;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+
+.terminalRow:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.ledgerRepoName {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.ledgerRepoName:hover {
+  color: var(--accent-cyan);
+}
+
+.ledgerLang {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+}
+
+.ledgerCircle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.ledgerDate {
+  color: var(--text-muted);
+}
+
+.ledgerLink {
+  color: var(--accent-violet);
+  text-decoration: none;
+}
+
+.ledgerLink:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.terminalLoading {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   Archive Subpage (Timeline)
+   ========================================================================== */
+.timelineContainer {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto 80px auto;
+  padding-left: 30px;
+}
+
+.timelineLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent-cyan) 0%, var(--accent-violet) 50%, var(--border-muted) 100%);
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 48px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.timelineNode {
+  position: absolute;
+  left: -30px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-obsidian);
+  border: 2px solid var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan);
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+
+.timelineItem:nth-child(even) .timelineNode {
+  border-color: var(--accent-violet);
+  box-shadow: 0 0 10px var(--accent-violet);
+}
+
+.timelineItem:hover .timelineNode {
+  background: var(--accent-cyan);
+  transform: scale(1.3);
+}
+
+.timelineTime {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-cyan);
+  margin-bottom: 8px;
+}
+
+.timelineItem:nth-child(even) .timelineTime {
+  color: var(--accent-violet);
+}
+
+.timelineContent {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-muted);
+  border-radius: 8px;
+  padding: 24px;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.3s ease;
+}
+
+.timelineItem:hover .timelineContent {
+  border-color: var(--border-violet-glow);
+}
+
+.timelineTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.timelineOrg {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.timelineDesc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+
+/* ==========================================================================
+   Writing Subpage Ledger
+   ========================================================================== */
+.articleList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto 50px auto;
+}
+
+.listCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-muted);
+  border-radius: 8px;
+  padding: 24px;
+  backdrop-filter: var(--glass-blur);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.listCard:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+}
+
+.listTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.listExcerpt {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.listFooter {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.listCard:hover .listFooter {
+  color: var(--accent-cyan);
+}
+
+.actionButtonWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 80px 0;
+}

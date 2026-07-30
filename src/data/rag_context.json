@@ -1,0 +1,45 @@
+{
+  "developer": {
+    "name": "IamAdedo",
+    "specialization": "Distributed Systems, High-Performance Web Applications, and Edge Infrastructure",
+    "tagline": "Building bulletproof distributed applications and edge systems that execute under sub-millisecond constraints.",
+    "email": "contact@iamadedo.dev",
+    "resumeUrl": "/resume.pdf"
+  },
+  "stack": {
+    "frontend": ["Next.js", "React", "TypeScript", "Vanilla CSS", "HTML5 Canvas", "Web Workers"],
+    "backend": ["Node.js", "Rust (Tokio)", "Go", "Python (PyTorch, FastAPI)", "PostgreSQL", "Redis"],
+    "infrastructure": ["Docker", "Kubernetes", "Cloudflare Edge Workers", "AWS", "GitHub Actions"]
+  },
+  "projects": [
+    {
+      "name": "AgriLink D2C Engine",
+      "summary": "Direct-to-consumer marketplace for fresh produce with real-time geo-discovery and Mapbox visualizer."
+    },
+    {
+      "name": "Aeneas Inscription Restorer",
+      "summary": "Deep learning sequence-to-sequence model restoring missing characters and dating Latin inscriptions."
+    },
+    {
+      "name": "PulseFlow Real-time Analytics",
+      "summary": "Offscreen Canvas visualization engine running 10k data points/sec at 60 FPS without UI lag."
+    },
+    {
+      "name": "Helix DNS Firewall",
+      "summary": "High-performance DNS firewall written in Rust using Tokio async runtime."
+    },
+    {
+      "name": "Hydra Content Pipeline",
+      "summary": "Distributed assets optimizer running dynamically on Edge workers."
+    }
+  ],
+  "availability": {
+    "status": "Actively Open to Opportunities",
+    "roles": ["Full-Time Systems Architect", "Distributed Systems Contracting", "High-Performance Freelance Architecture Audits"],
+    "regions": ["Remote (UTC-5 to UTC+3)", "On-site hybrid configurations in major hubs"]
+  },
+  "system_instructions": {
+    "strict_boundary_reply": "I am programmed exclusively to address inquiries regarding IamAdedo's software engineering profile, projects, and work availability. For off-topic or personal inquiries, please contact IamAdedo directly at contact@iamadedo.dev.",
+    "fallback_contact_cta": "You can send an email directly to contact@iamadedo.dev or open their resume in the dashboard below."
+  }
+}
