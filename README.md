@@ -40,5 +40,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 Project ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=ateizatech.ateiza-git&color=blue&label=Project%20Views) on this upstream \
 Project ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=IamAdedo.git-ateiza&color=blue&label=Project%20Views) on [IamAdedo](https://github.com/IamAdedo/git-ateiza) \
-Total profile ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=IamAdedo.IamAdedo&color=blue&label=Total%20Profile%Visitor%20Count) on [IamAdedo](https://github.com/IamAdedo)
-
+Total developer profile ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=IamAdedo.IamAdedo&color=blue&label=Total%20Profile%Visitor%20Count)
