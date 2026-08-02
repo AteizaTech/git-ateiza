@@ -34,3 +34,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+Project ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=IamAdedo.git-ateiza&color=blue&label=Project%20Views) on [IamAdedo](https://github.com/IamAdedo/git-ateiza) \
+Project ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=IamAdedo.agrilink&color=blue&label=Project%20Views) on this upstream \
+Total profile ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=IamAdedo.IamAdedo&color=blue&label=Total%20Profile%Visitor%20Count)
+
