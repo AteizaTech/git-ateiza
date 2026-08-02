@@ -36,7 +36,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
-Project ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=ateiza-tech.ateiza-git&color=blue&label=Project%20Views) on this upstream \
+Project ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=ateizatech.ateiza-git&color=blue&label=Project%20Views) on this upstream \
 Project ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=IamAdedo.git-ateiza&color=blue&label=Project%20Views) on [IamAdedo](https://github.com/IamAdedo/git-ateiza) \
 Total profile ![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=IamAdedo.IamAdedo&color=blue&label=Total%20Profile%Visitor%20Count)
 
