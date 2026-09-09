@@ -79,7 +79,7 @@ function getResponse(query: string): string {
 }
 
 export default function AIAgent() {
-  const [isTerminalOpen, setIsTerminalOpen] = useState(true);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -96,10 +96,24 @@ export default function AIAgent() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (isTerminalOpen) {
+    if (isChatbotOpen) {
       logsEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
     }
-  }, [messages, isTerminalOpen]);
+  }, [messages, isChatbotOpen]);
+
+  // Handle ESC key to close chatbot terminal
+  useEffect(() => {
+    const handleKeyDownGlobal = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isChatbotOpen) {
+        setIsChatbotOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDownGlobal);
+    return () => window.removeEventListener("keydown", handleKeyDownGlobal);
+  }, [isChatbotOpen]);
 
   const executeCommand = (cmdText: string) => {
     const trimmed = cmdText.trim();
@@ -135,195 +149,300 @@ export default function AIAgent() {
     }
   };
 
-  const handleChipClick = (cmd: string) => {
-    if (!isTerminalOpen) {
-      setIsTerminalOpen(true);
-    }
+  const openChatbotWithQuery = (cmd: string) => {
+    setIsChatbotOpen(true);
     executeCommand(cmd);
-    inputRef.current?.focus();
   };
 
-  const scrollToTerminal = () => {
-    const terminalEl = document.getElementById("agent-terminal");
-    if (terminalEl) {
-      terminalEl.scrollIntoView({ behavior: "smooth", block: "center" });
-      setIsTerminalOpen(true);
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 400);
-    }
+  const toggleChatbotTerminal = () => {
+    setIsChatbotOpen((prev) => !prev);
   };
 
   return (
     <>
+      {/* Module 4: Copilot Terminal Card in Document Flow */}
       <div className={styles.agentAnchor} id="agent-terminal">
         <div className={styles.agentDockCard}>
           {/* Card Header */}
           <div className={styles.agentDockHeader}>
             <div className={styles.agentDockHeaderLeft}>
               <div className={styles.agentDockEyebrow}>
-                [ SECURITY COPILOT // RECONNAISSANCE TERMINAL ]
+                [ COPILOT TERMINAL // SYSTEM TELEMETRY ]
               </div>
               <h3 className={styles.agentDockTitle}>Interactive Agent Terminal</h3>
               <p className={styles.agentDockCopy}>
                 Directly probe system capabilities, AI cybersecurity automation pipelines, and
-                engineering specializations via automated telemetry query.
+                engineering specializations via the AteizaTech Copilot.
               </p>
             </div>
 
             <div className={styles.agentDockHeaderRight}>
               <div className={styles.agentStatusBadge}>
                 <span className={styles.pulseIndicator} />
-                <span>COPILOT ONLINE</span>
+                <span>COPILOT ONLINE // PORT 4096</span>
               </div>
-              <button
-                type="button"
-                className={styles.terminalControlBtn}
-                onClick={() => setIsTerminalOpen(!isTerminalOpen)}
-                id="toggle-terminal-view-btn"
-              >
-                {isTerminalOpen ? "[ Minimize Shell ]" : "[ Open Shell ]"}
-              </button>
-              <button
-                type="button"
-                className={styles.terminalControlBtn}
-                onClick={() => executeCommand("clear")}
-                id="clear-terminal-logs-btn"
-              >
-                [ Clear ]
-              </button>
             </div>
           </div>
 
-          {/* Suggested Query Chips */}
-          <div className={styles.terminalChipsRow}>
-            <span className={styles.terminalChipLabel}>QUICK PROMPTS:</span>
-            <button
-              type="button"
-              className={styles.terminalChipBtn}
-              onClick={() => handleChipClick("security")}
-            >
-              $ security
-            </button>
-            <button
-              type="button"
-              className={styles.terminalChipBtn}
-              onClick={() => handleChipClick("projects")}
-            >
-              $ projects
-            </button>
-            <button
-              type="button"
-              className={styles.terminalChipBtn}
-              onClick={() => handleChipClick("stack")}
-            >
-              $ stack
-            </button>
-            <button
-              type="button"
-              className={styles.terminalChipBtn}
-              onClick={() => handleChipClick("experience")}
-            >
-              $ experience
-            </button>
-            <button
-              type="button"
-              className={styles.terminalChipBtn}
-              onClick={() => handleChipClick("contact")}
-            >
-              $ contact
-            </button>
-            <button
-              type="button"
-              className={styles.terminalChipBtn}
-              onClick={() => handleChipClick("help")}
-            >
-              $ help
-            </button>
+          {/* Telemetry Matrix Grid */}
+          <div className={styles.agentTelemetryGrid}>
+            <div className={styles.telemetryItem}>
+              <span className={styles.telemetryLabel}>RUNTIME DAEMON</span>
+              <span className={styles.telemetryValue}>
+                <span className={styles.pulseIndicator} />
+                ateizatech-agentd
+              </span>
+            </div>
+            <div className={styles.telemetryItem}>
+              <span className={styles.telemetryLabel}>AI CORE ENGINE</span>
+              <span className={`${styles.telemetryValue} ${styles.telemetryValueHighlight}`}>
+                SecOps Copilot v2.5
+              </span>
+            </div>
+            <div className={styles.telemetryItem}>
+              <span className={styles.telemetryLabel}>PRIMARY DOMAIN</span>
+              <span className={styles.telemetryValue}>AI Cybersecurity & Automation</span>
+            </div>
+            <div className={styles.telemetryItem}>
+              <span className={styles.telemetryLabel}>INTERFACE LINK</span>
+              <span className={`${styles.telemetryValue} ${styles.telemetryValueHighlight}`}>
+                Interactive Chatbot Terminal
+              </span>
+            </div>
           </div>
 
-          {/* In-Flow Terminal Window - Never Overlays Card Content */}
-          {isTerminalOpen && (
-            <div className={styles.terminalWindow} id="agent-terminal-window">
-              {/* Terminal Window Topbar */}
-              <div className={styles.terminalWindowHeader}>
-                <div className={styles.terminalWindowDots}>
-                  <span className={`${styles.terminalDot} ${styles.terminalDotRed}`} />
-                  <span className={`${styles.terminalDot} ${styles.terminalDotYellow}`} />
-                  <span className={`${styles.terminalDot} ${styles.terminalDotGreen}`} />
-                </div>
-                <div className={styles.terminalWindowTitle}>
-                  <span>bash: ateizatech-ai // security telemetry</span>
-                </div>
-                <div className={styles.terminalWindowMeta}>PID: 4096 [RUNNING]</div>
-              </div>
+          {/* Call-to-Action Row: Calls the Chatbot Terminal */}
+          <div className={styles.agentCallToActionRow}>
+            <button
+              type="button"
+              className={`${styles.callChatbotBtn} ${
+                isChatbotOpen ? styles.callChatbotBtnActive : ""
+              }`}
+              onClick={toggleChatbotTerminal}
+              id="call-chatbot-terminal-btn"
+              aria-label="Call Chatbot Terminal"
+            >
+              <span className={styles.pulseIndicator} />
+              <span>
+                {isChatbotOpen ? "Chatbot Terminal Active [Focus / Close]" : "⚡ Call Chatbot Terminal ◬"}
+              </span>
+            </button>
 
-              {/* Scrollable Logs */}
-              <div className={styles.terminalConsoleLogs}>
-                {messages.map((m, idx) => (
-                  <div key={idx} className={styles.terminalLogEntry}>
-                    {m.sender === "system" && (
-                      <div className={styles.terminalLogSystem}>{m.text}</div>
-                    )}
-                    {m.sender === "user" && (
-                      <div className={styles.terminalLogUser}>
-                        <span className={styles.terminalLogUserPrompt}>
-                          visitor@ateizatech:~$
-                        </span>
-                        <span>{m.text}</span>
-                      </div>
-                    )}
-                    {m.sender === "agent" && (
-                      <div className={styles.terminalLogAgent}>
-                        <strong style={{ color: "var(--accent-cyan)", marginRight: "6px" }}>
-                          [COPILOT]
-                        </strong>
-                        {m.text}
-                      </div>
-                    )}
-                  </div>
-                ))}
-                <div ref={logsEndRef} />
-              </div>
-
-              {/* Command Prompt Input Row */}
-              <div className={styles.terminalPromptRow}>
-                <span className={styles.terminalPromptPrefix}>visitor@ateizatech:~$</span>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  className={styles.terminalPromptInput}
-                  placeholder="Type a command or question (e.g. security, stack, projects)..."
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  id="agent-terminal-input"
-                />
-                <button
-                  type="button"
-                  className={styles.terminalPromptBtn}
-                  onClick={handleSend}
-                  id="agent-terminal-submit"
-                >
-                  Run ↵
-                </button>
-              </div>
+            {/* Suggested Prompt Trigger Chips */}
+            <div className={styles.terminalChipsRow}>
+              <span className={styles.terminalChipLabel}>QUICK CALLS:</span>
+              <button
+                type="button"
+                className={styles.terminalChipBtn}
+                onClick={() => openChatbotWithQuery("security")}
+              >
+                $ security
+              </button>
+              <button
+                type="button"
+                className={styles.terminalChipBtn}
+                onClick={() => openChatbotWithQuery("projects")}
+              >
+                $ projects
+              </button>
+              <button
+                type="button"
+                className={styles.terminalChipBtn}
+                onClick={() => openChatbotWithQuery("stack")}
+              >
+                $ stack
+              </button>
+              <button
+                type="button"
+                className={styles.terminalChipBtn}
+                onClick={() => openChatbotWithQuery("experience")}
+              >
+                $ experience
+              </button>
+              <button
+                type="button"
+                className={styles.terminalChipBtn}
+                onClick={() => openChatbotWithQuery("contact")}
+              >
+                $ contact
+              </button>
+              <button
+                type="button"
+                className={styles.terminalChipBtn}
+                onClick={() => openChatbotWithQuery("help")}
+              >
+                $ help
+              </button>
             </div>
-          )}
+          </div>
         </div>
       </div>
 
-      {/* Non-obtrusive Floating Copilot Shortcut in the bottom-right viewport corner */}
+      {/* Floating Copilot Launcher Button (Viewport Corner) */}
       <button
         type="button"
         className={styles.floatingCopilotLauncher}
-        onClick={scrollToTerminal}
-        aria-label="Scroll to Interactive Agent Terminal"
-        id="floating-copilot-shortcut"
+        onClick={toggleChatbotTerminal}
+        aria-label={isChatbotOpen ? "Close Chatbot Terminal" : "Call Copilot Terminal"}
+        id="floating-copilot-launcher"
       >
         <span className={styles.pulseIndicator} />
-        <span>◬ Copilot Terminal</span>
+        <span>{isChatbotOpen ? "✕ Close Copilot" : "◬ Call Copilot Terminal"}</span>
       </button>
+
+      {/* The Chatbot Terminal Window (Summoned by Copilot) */}
+      {isChatbotOpen && (
+        <div
+          className={styles.chatbotTerminalWindow}
+          id="chatbot-terminal-window"
+          role="dialog"
+          aria-label="AteizaTech Copilot Chatbot Terminal"
+        >
+          {/* Top Bar with Traffic Light Controls */}
+          <div className={styles.chatbotTerminalHeader}>
+            <div className={styles.chatbotTerminalDots}>
+              <span
+                className={`${styles.terminalDot} ${styles.terminalDotRed}`}
+                onClick={() => setIsChatbotOpen(false)}
+                title="Close Chatbot Terminal"
+              />
+              <span
+                className={`${styles.terminalDot} ${styles.terminalDotYellow}`}
+                onClick={() => setIsChatbotOpen(false)}
+                title="Minimize Terminal"
+              />
+              <span
+                className={`${styles.terminalDot} ${styles.terminalDotGreen}`}
+                onClick={() => executeCommand("clear")}
+                title="Clear Terminal Buffer"
+              />
+            </div>
+
+            <div className={styles.chatbotTerminalTitle}>
+              <span className={styles.pulseIndicator} />
+              <span>bash: ateizatech-ai // copilot terminal</span>
+            </div>
+
+            <div className={styles.chatbotTerminalControls}>
+              <button
+                type="button"
+                className={styles.chatbotHeaderBtn}
+                onClick={() => executeCommand("clear")}
+                title="Clear terminal logs"
+              >
+                [clear]
+              </button>
+              <button
+                type="button"
+                className={styles.chatbotCloseBtn}
+                onClick={() => setIsChatbotOpen(false)}
+                aria-label="Close Chatbot Terminal"
+                title="Close (Esc)"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          {/* Quick Command Filter Chips */}
+          <div className={styles.chatbotQuickChipsBar}>
+            <span className={styles.terminalChipLabel}>RUN:</span>
+            <button
+              type="button"
+              className={styles.chatbotQuickChip}
+              onClick={() => executeCommand("security")}
+            >
+              security
+            </button>
+            <button
+              type="button"
+              className={styles.chatbotQuickChip}
+              onClick={() => executeCommand("projects")}
+            >
+              projects
+            </button>
+            <button
+              type="button"
+              className={styles.chatbotQuickChip}
+              onClick={() => executeCommand("stack")}
+            >
+              stack
+            </button>
+            <button
+              type="button"
+              className={styles.chatbotQuickChip}
+              onClick={() => executeCommand("experience")}
+            >
+              experience
+            </button>
+            <button
+              type="button"
+              className={styles.chatbotQuickChip}
+              onClick={() => executeCommand("contact")}
+            >
+              contact
+            </button>
+            <button
+              type="button"
+              className={styles.chatbotQuickChip}
+              onClick={() => executeCommand("help")}
+            >
+              help
+            </button>
+          </div>
+
+          {/* Console Output Logs */}
+          <div className={styles.chatbotConsoleLogs}>
+            {messages.map((m, idx) => (
+              <div key={idx} className={styles.chatbotLogEntry}>
+                {m.sender === "system" && (
+                  <div className={styles.chatbotLogSystem}>{m.text}</div>
+                )}
+                {m.sender === "user" && (
+                  <div className={styles.chatbotLogUser}>
+                    <span className={styles.chatbotLogUserPrefix}>
+                      visitor@ateizatech:~$
+                    </span>
+                    <span>{m.text}</span>
+                  </div>
+                )}
+                {m.sender === "agent" && (
+                  <div className={styles.chatbotLogAgent}>
+                    <strong style={{ color: "var(--accent-cyan)", marginRight: "6px" }}>
+                      [COPILOT]
+                    </strong>
+                    {m.text}
+                  </div>
+                )}
+              </div>
+            ))}
+            <div ref={logsEndRef} />
+          </div>
+
+          {/* Interactive Shell Input Row */}
+          <div className={styles.chatbotPromptRow}>
+            <span className={styles.chatbotPromptPrefix}>visitor@ateizatech:~$</span>
+            <input
+              ref={inputRef}
+              type="text"
+              className={styles.chatbotPromptInput}
+              placeholder="Query security, projects, stack, or custom query..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              id="chatbot-terminal-prompt-input"
+            />
+            <button
+              type="button"
+              className={styles.chatbotPromptBtn}
+              onClick={handleSend}
+              id="chatbot-terminal-send-btn"
+            >
+              Run ↵
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
