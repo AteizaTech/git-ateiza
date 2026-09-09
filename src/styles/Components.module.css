@@ -322,49 +322,14 @@
 
 
 /* ==========================================================================
-   AI Agent RAG Boundary
+   AI Agent & Interactive Terminal
    ========================================================================== */
-.agentWrapper {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 10000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-family: var(--font-mono);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(18px) scale(0.94);
-  transition: opacity 260ms ease, transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
 .agentAnchor {
-  min-height: 104px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 36px;
-}
-
-.agentWrapperVisible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0) scale(1);
-}
-
-.agentWrapperHidden {
-  visibility: hidden;
-}
-
-.agentWrapperDocked {
-  position: relative;
-  right: auto;
-  bottom: auto;
-  align-items: center;
   width: 100%;
   max-width: var(--max-width);
-  transform: translateY(0) scale(1);
+  margin: 36px auto 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .agentDockCard {
@@ -372,151 +337,78 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-muted);
   border-radius: 12px;
-  padding: 48px 170px 48px 48px;
+  padding: 36px;
   backdrop-filter: var(--glass-blur);
   box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
   text-align: left;
+  position: relative;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.agentDockCard:focus-within,
+.agentDockCard:hover {
+  border-color: rgba(0, 242, 254, 0.35);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.08);
+}
+
+.agentDockHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.agentDockHeaderLeft {
+  flex: 1;
+  min-width: 280px;
 }
 
 .agentDockEyebrow {
   color: var(--accent-cyan);
   font-size: 0.8rem;
   letter-spacing: 1.5px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-family: var(--font-mono);
 }
 
 .agentDockTitle {
   color: var(--text-primary);
   font: 700 clamp(1.5rem, 3vw, 2.1rem) / 1.2 var(--font-display);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .agentDockCopy {
   color: var(--text-secondary);
   font-family: var(--font-display);
-  max-width: 600px;
+  max-width: 640px;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-.agentWrapperDocked .agentLauncherContainer {
-  position: absolute;
-  right: 48px;
-  bottom: 50%;
-  transform: translateY(50%);
-}
-
-.agentBanner {
-  background: var(--bg-surface);
-  border: 1px solid var(--accent-cyan);
-  border-radius: 6px;
-  padding: 10px 16px;
-  margin-bottom: 12px;
-  font-size: 0.8rem;
-  color: var(--text-primary);
-  max-width: 250px;
-  backdrop-filter: var(--glass-blur);
-  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.2);
-  transition: all 0.3s ease;
-  animation: fadeInUp 0.4s ease forwards;
-}
-
-.agentTooltip {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid var(--border-muted);
-  color: var(--text-secondary);
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  margin-bottom: 6px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.agentLauncherContainer:hover .agentTooltip {
-  opacity: 1;
-}
-
-.agentLauncher {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
-  border: none;
-  cursor: pointer;
+.agentDockHeaderRight {
   display: flex;
-  justify-content: center;
   align-items: center;
-  box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.agentLauncherActive {
-  transform: rotate(135deg);
-  background: var(--bg-surface);
-  border: 1px solid var(--accent-cyan);
-  box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
-}
-
-.agentLauncherIcon {
-  color: #fff;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
-}
-
-.agentLauncherActive .agentLauncherIcon {
-  color: var(--accent-cyan);
-}
-
-.chatBox {
-  width: 380px;
-  height: 500px;
-  background: rgba(5, 5, 8, 0.95);
-  border: 1px solid var(--accent-cyan);
-  border-radius: 12px;
-  margin-bottom: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 254, 0.15);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  backdrop-filter: var(--glass-blur);
-  animation: chatOpen 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.agentWrapperDocked .chatBox {
-  position: absolute;
-  bottom: 76px;
-  right: 50%;
-  transform: translateX(50%);
-}
-
-@keyframes chatOpen {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.chatHeader {
-  background: rgba(20, 20, 30, 0.7);
-  border-bottom: 1px solid var(--border-muted);
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chatTitle {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--accent-cyan);
-  letter-spacing: 1px;
-  display: flex;
+.agentStatusBadge {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
 }
 
 .pulseIndicator {
@@ -528,98 +420,242 @@
   animation: terminalBlink 1.5s infinite;
 }
 
-.chatCloseBtn {
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.chatCloseBtn:hover {
-  color: #ff5555;
-}
-
-.chatLogs {
-  flex-grow: 1;
-  padding: 16px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 0.85rem;
-}
-
-.chatMsg {
-  max-width: 85%;
-  line-height: 1.4;
-  word-wrap: break-word;
-}
-
-.chatMsgUser {
-  align-self: flex-end;
-  background: rgba(161, 84, 255, 0.15);
-  border: 1px solid var(--border-violet-glow);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 8px 8px 0 8px;
-}
-
-.chatMsgAgent {
-  align-self: flex-start;
-  color: var(--text-secondary);
-  border-left: 2px solid var(--accent-cyan);
-  padding-left: 10px;
-}
-
-.chatMsgAgent a {
-  color: var(--accent-cyan);
-  text-decoration: underline;
-}
-
-.chatMsgAgent a:hover {
-  color: #fff;
-}
-
-.chatInputArea {
-  padding: 12px;
-  border-top: 1px solid var(--border-muted);
-  display: flex;
-  gap: 8px;
-}
-
-.chatInput {
-  flex-grow: 1;
+.terminalControlBtn {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-muted);
   border-radius: 6px;
-  padding: 10px 14px;
+  padding: 6px 14px;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.terminalControlBtn:hover {
+  border-color: var(--accent-cyan);
+  color: var(--text-primary);
+  background: rgba(0, 242, 254, 0.08);
+}
+
+.terminalChipsRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.terminalChipLabel {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.terminalChipBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-muted);
+  border-radius: 4px;
+  padding: 5px 12px;
+  color: var(--accent-cyan);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.terminalChipBtn:hover {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.12);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* In-Flow Terminal Window - Never Overlays Content */
+.terminalWindow {
+  width: 100%;
+  background: #06070a;
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.05);
+}
+
+.terminalWindowHeader {
+  background: #0c0e15;
+  border-bottom: 1px solid var(--border-muted);
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+}
+
+.terminalWindowDots {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.terminalDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.terminalDotRed { background: #ff5f56; }
+.terminalDotYellow { background: #ffbd2e; }
+.terminalDotGreen { background: #27c93f; }
+
+.terminalWindowTitle {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminalWindowMeta {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.72rem;
+}
+
+.terminalConsoleLogs {
+  padding: 18px 20px;
+  min-height: 240px;
+  max-height: 380px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  background: radial-gradient(circle at top right, rgba(0, 242, 254, 0.02), transparent 70%);
+}
+
+.terminalLogEntry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  word-break: break-word;
+}
+
+.terminalLogUser {
+  color: #fff;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.terminalLogUserPrompt {
+  color: var(--accent-cyan);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.terminalLogAgent {
+  color: var(--text-secondary);
+  border-left: 2px solid var(--accent-violet);
+  padding-left: 12px;
+  margin-left: 4px;
+  line-height: 1.6;
+}
+
+.terminalLogSystem {
+  color: #64748b;
+  font-size: 0.82rem;
+  border-left: 2px solid var(--accent-cyan);
+  padding-left: 12px;
+  margin-left: 4px;
+}
+
+.terminalPromptRow {
+  background: #090a10;
+  border-top: 1px solid var(--border-muted);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terminalPromptPrefix {
+  color: var(--accent-cyan);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.terminalPromptInput {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.terminalPromptInput::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.terminalPromptBtn {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 16px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.terminalPromptBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Floating Copilot Launcher (Bottom-Right corner, non-obtrusive) */
+.floatingCopilotLauncher {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(10, 12, 18, 0.92);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 999px;
+  padding: 8px 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.2);
+  backdrop-filter: var(--glass-blur);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--text-primary);
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  outline: none;
-  transition: border-color 0.2s ease;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
-.chatInput:focus {
-  border-color: var(--accent-cyan);
-}
-
-.chatSendBtn {
-  background: var(--accent-cyan);
-  color: var(--bg-obsidian);
-  border: none;
-  border-radius: 6px;
-  padding: 0 16px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 0.85rem;
-  font-family: var(--font-mono);
-  transition: opacity 0.2s ease;
-}
-
-.chatSendBtn:hover {
-  opacity: 0.9;
+.floatingCopilotLauncher:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 28px rgba(0, 242, 254, 0.35);
+  border-color: #fff;
 }
 
 
@@ -709,15 +745,9 @@
     padding: 12px 0;
     width: 100%;
   }
-  .agentWrapper {
-    bottom: 20px;
-    right: 20px;
-  }
-  .agentAnchor { min-height: 92px; margin-top: 24px; }
-  .agentDockCard { padding: 30px 88px 30px 24px; }
-  .agentWrapperDocked .agentLauncherContainer { right: 24px; }
-  .chatBox {
-    width: min(320px, calc(100vw - 40px));
-    height: min(400px, calc(100vh - 120px));
-  }
+  .agentAnchor { margin-top: 24px; }
+  .agentDockCard { padding: 24px 18px; }
+  .floatingCopilotLauncher { bottom: 20px; right: 20px; padding: 6px 14px; font-size: 0.78rem; }
+  .terminalConsoleLogs { min-height: 200px; max-height: 320px; padding: 14px 12px; }
+  .terminalPromptRow { padding: 10px 12px; }
 }
