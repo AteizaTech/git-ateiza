@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AteizaTech | Distributed Systems & High-Performance Web Architect",
-  description: "Portfolio of AteizaTech, featuring high-performance distributed systems engineering, edge computing layouts, and systems programming.",
-  keywords: ["AteizaTech", "Systems Engineer", "Next.js Portfolio", "Distributed Systems", "Rust Developer", "High Performance Web"],
+  title: "AteizaTech | AI Cybersecurity Automation & Systems Architect",
+  description: "Portfolio of AteizaTech, featuring AI cybersecurity automation, autonomous threat detection pipelines, and resilient zero-trust security engineering.",
+  keywords: ["AteizaTech", "AI Cybersecurity", "Security Automation", "Zero Trust", "Threat Detection", "SecOps"],
   authors: [{ name: "AteizaTech" }],
   openGraph: {
-    title: "AteizaTech | Systems & Web Architect",
-    description: "Sleek, high-performance developer portfolio built under sub-millisecond execution constraints.",
+    title: "AteizaTech | AI Cybersecurity Automation Architect",
+    description: "AI cybersecurity automation, autonomous threat detection, and resilient zero-trust security architectures.",
     type: "website",
     url: "https://ateizatech.dev"
   }

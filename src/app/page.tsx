@@ -56,8 +56,8 @@ export default function Home() {
         <section className={styles.section} id="projects">
           <div className={styles.sectionHeader}>
             <div>
-              <div className={styles.sectionSubtitle}>Module 02 // Flagship Architectures</div>
-              <h2 className={styles.sectionTitle}>Case Studies & Pinned Repositories</h2>
+              <div className={styles.sectionSubtitle}>Module 02 // AteizaTech Repositories</div>
+              <h2 className={styles.sectionTitle}>Live Repositories & Architecture</h2>
             </div>
             <Link href="/projects" className={styles.sectionActionLink} id="view-all-projects-link">
               [ View More Architecture & Activity → ]

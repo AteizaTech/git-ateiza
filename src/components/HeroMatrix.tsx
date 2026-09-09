@@ -12,14 +12,14 @@ export default function HeroMatrix() {
       </h1>
 
       <div className={styles.heroSpecs}>
-        <span className={styles.specBadge}>Distributed Systems</span>
-        <span className={styles.specBadge}>High-Performance Web</span>
-        <span className={styles.specBadge}>Edge Infrastructure</span>
-        <span className={styles.specBadge}>Systems Programming</span>
+        <span className={styles.specBadge}>AI Threat Detection</span>
+        <span className={styles.specBadge}>Cybersecurity Automation</span>
+        <span className={styles.specBadge}>Zero-Trust Infrastructure</span>
+        <span className={styles.specBadge}>SecOps & Incident Response</span>
       </div>
 
       <p className={styles.heroBio}>
-        I design and build distributed execution networks and edge storage systems that operate under sub-millisecond constraints. Focused on architecture reliability, high scalability, and clean modular codebases.
+        I am an AI Cybersecurity Automation Engineer building autonomous threat detection pipelines, intelligent incident response workflows, and resilient zero-trust defenses. Focused on proactive threat mitigation, automated vulnerability intelligence, and mission-critical system hardening.
       </p>
 
       <div className={styles.heroActions}>

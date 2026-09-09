@@ -4,10 +4,44 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Components.module.css";
 import { PinnedRepo } from "../app/api/github/route";
 
+const ATEIZA_FALLBACK_REPOS: PinnedRepo[] = [
+  {
+    name: "AteizaTech",
+    description: "Cybersecurity and Automation, threat detection pipelines, and autonomous SecOps workflows.",
+    url: "https://github.com/AteizaTech/AteizaTech",
+    stars: 0,
+    language: { name: "Python", color: "#3572A5" },
+    topics: ["cybersecurity", "automation", "python", "secops"]
+  },
+  {
+    name: "git-ateiza",
+    description: "Git and Git-Hub and Piscine architecture, interactive learning environment.",
+    url: "https://github.com/AteizaTech/git-ateiza",
+    stars: 0,
+    language: { name: "TypeScript", color: "#3178c6" },
+    topics: ["git", "github", "piscine", "typescript"]
+  },
+  {
+    name: "ateiza",
+    description: "Portfolio & distributed systems web architecture engine with sub-millisecond execution constraints.",
+    url: "https://github.com/AteizaTech/ateiza",
+    stars: 0,
+    language: { name: "TypeScript", color: "#3178c6" },
+    topics: ["portfolio", "nextjs", "react", "systems"]
+  },
+  {
+    name: "poetry",
+    description: "Python packaging and dependency management made easy with automated workflows.",
+    url: "https://github.com/AteizaTech/poetry",
+    stars: 0,
+    language: { name: "Python", color: "#3572A5" },
+    topics: ["python", "packaging", "dependencies", "build-tool"]
+  }
+];
+
 export default function ProjectsGrid() {
   const [repos, setRepos] = useState<PinnedRepo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchPinnedRepos() {
@@ -17,10 +51,14 @@ export default function ProjectsGrid() {
           throw new Error("Failed to fetch pinned repositories");
         }
         const data: PinnedRepo[] = await res.json();
-        setRepos(data);
+        if (Array.isArray(data) && data.length > 0) {
+          setRepos(data);
+        } else {
+          setRepos(ATEIZA_FALLBACK_REPOS);
+        }
       } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : "An unexpected error occurred";
-        setError(message);
+        console.warn("Using local AteizaTech ledger fallback:", err);
+        setRepos(ATEIZA_FALLBACK_REPOS);
       } finally {
         setLoading(false);
       }
@@ -80,10 +118,10 @@ export default function ProjectsGrid() {
     );
   }
 
-  if (error || repos.length === 0) {
+  if (repos.length === 0) {
     return (
       <div style={{ padding: "40px", textAlign: "center", color: "var(--text-secondary)" }}>
-        <p>[ WARNING: Failed to establish API pipe to host. Rendering offline data ledger fallback. ]</p>
+        <p>[ System telemetry: No active repositories found. ]</p>
       </div>
     );
   }

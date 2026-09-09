@@ -285,12 +285,23 @@
   background: linear-gradient(180deg, var(--accent-cyan) 0%, var(--accent-violet) 50%, var(--border-muted) 100%);
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .timelineItem {
   position: relative;
   margin-bottom: 48px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .timelineNode {

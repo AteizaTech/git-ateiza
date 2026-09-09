@@ -9,140 +9,138 @@ export interface PinnedRepo {
   topics: string[];
 }
 
-const FALLBACK_PINNED_REPOS: PinnedRepo[] = [
+const LANGUAGE_COLORS: Record<string, string> = {
+  TypeScript: "#3178c6",
+  JavaScript: "#f1e05a",
+  Python: "#3572A5",
+  Rust: "#dea584",
+  Go: "#00ADD8",
+  Shell: "#89e051",
+  HTML: "#e34c26",
+  CSS: "#563d7c",
+};
+
+// Fallback matching actual AteizaTech repositories
+const FALLBACK_REPOS: PinnedRepo[] = [
   {
-    name: "HNTR OSPR DROP",
-    description: "An advanced sandbox compiler environment optimized for agentic operations and low-memory execution runtimes.",
-    url: "https://github.com/AteizaTech/hntr-ospr-drop",
-    stars: 142,
-    language: { name: "TypeScript", color: "#3178c6" },
-    topics: ["compiler", "sandbox", "security", "webassembly"]
-  },
-  {
-    name: "HNTR PWR River",
-    description: "A distributed message streaming queue with multi-region transaction replication and sub-millisecond persistence layers.",
-    url: "https://github.com/AteizaTech/hntr-pwr-river",
-    stars: 98,
-    language: { name: "Go", color: "#00ADD8" },
-    topics: ["distributed-systems", "message-queue", "tokio", "replication"]
-  },
-  {
-    name: "antigravity-core",
-    description: "The core engine executing AI programming tasks with secure sandboxing and real-time terminal sync.",
-    url: "https://github.com/AteizaTech/antigravity-core",
-    stars: 231,
-    language: { name: "Rust", color: "#dea584" },
-    topics: ["rust", "agentic-coding", "sandbox", "async"]
-  },
-  {
-    name: "agrilink-d2c",
-    description: "Direct-to-consumer digital marketplace connecting regional farmers and local vendors with consumers.",
-    url: "https://github.com/AteizaTech/agrilink-d2c",
-    stars: 45,
-    language: { name: "TypeScript", color: "#3178c6" },
-    topics: ["nextjs", "react", "mapbox", "postgresql"]
-  },
-  {
-    name: "aeneas-restorer",
-    description: "Deep learning sequence-to-sequence model restoring missing characters and dating ancient Latin inscriptions.",
-    url: "https://github.com/AteizaTech/aeneas-restorer",
-    stars: 64,
+    name: "AteizaTech",
+    description: "Cybersecurity and Automation, threat detection pipelines, and autonomous SecOps workflows.",
+    url: "https://github.com/AteizaTech/AteizaTech",
+    stars: 0,
     language: { name: "Python", color: "#3572A5" },
-    topics: ["pytorch", "nlp", "transformers", "latin"]
+    topics: ["cybersecurity", "automation", "python", "secops"]
   },
   {
-    name: "helix-dns",
-    description: "High-performance local DNS firewall and ad routing proxy written in Rust using the Tokio async runtime.",
-    url: "https://github.com/AteizaTech/helix-dns",
-    stars: 52,
-    language: { name: "Rust", color: "#dea584" },
-    topics: ["rust", "tokio", "dns", "firewall"]
+    name: "git-ateiza",
+    description: "Git and Git-Hub and Piscine architecture, interactive learning environment.",
+    url: "https://github.com/AteizaTech/git-ateiza",
+    stars: 0,
+    language: { name: "TypeScript", color: "#3178c6" },
+    topics: ["git", "github", "piscine", "typescript"]
+  },
+  {
+    name: "ateiza",
+    description: "Portfolio & distributed systems web architecture engine with sub-millisecond execution constraints.",
+    url: "https://github.com/AteizaTech/ateiza",
+    stars: 0,
+    language: { name: "TypeScript", color: "#3178c6" },
+    topics: ["portfolio", "nextjs", "react", "systems"]
+  },
+  {
+    name: "poetry",
+    description: "Python packaging and dependency management made easy with automated workflows.",
+    url: "https://github.com/AteizaTech/poetry",
+    stars: 0,
+    language: { name: "Python", color: "#3572A5" },
+    topics: ["python", "packaging", "dependencies", "build-tool"]
   }
 ];
 
 export async function GET() {
   const token = process.env.GITHUB_PAT;
+  const username = "AteizaTech";
 
-  if (!token) {
-    // Return fallback mock data if no secret token is configured
-    return NextResponse.json(FALLBACK_PINNED_REPOS);
+  const headers: Record<string, string> = {
+    "User-Agent": "AteizaTech-Portfolio",
+    Accept: "application/vnd.github.v3+json",
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
   }
 
-  const query = `
-    query {
-      user(login: "AteizaTech") {
-        pinnedItems(first: 6, types: REPOSITORY) {
-          nodes {
-            ... on Repository {
-              name
-              description
-              url
-              stargazerCount
-              primaryLanguage {
-                name
-                color
-              }
-              repositoryTopics(first: 5) {
-                nodes {
-                  topic {
-                    name
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
   try {
-    const res = await fetch("https://api.github.com/graphql", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query }),
-      next: { revalidate: 3600 } // Cache results for 1 hour (ISR)
+    // Directly fetch live repositories from GitHub REST API for AteizaTech
+    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=pushed&per_page=12`, {
+      headers,
+      next: { revalidate: 300 } // Cache results for 5 minutes (ISR)
     });
 
     if (!res.ok) {
-      throw new Error(`GitHub GraphQL API returned status ${res.status}`);
+      console.warn(`GitHub API returned status ${res.status}, falling back to static ledger`);
+      return NextResponse.json(FALLBACK_REPOS);
     }
 
-    const data = await res.json();
-    const nodes = data?.data?.user?.pinnedItems?.nodes;
-
-    if (!nodes || !Array.isArray(nodes)) {
-      throw new Error("No pinned items returned from GitHub GraphQL");
-    }
-
-    interface GraphQLNode {
+    interface RawGitHubRepo {
       name: string;
-      description?: string | null;
-      url: string;
-      stargazerCount?: number;
-      primaryLanguage?: { name: string; color: string } | null;
-      repositoryTopics?: {
-        nodes?: Array<{ topic: { name: string } }>;
-      };
+      description: string | null;
+      html_url: string;
+      stargazers_count: number;
+      language: string | null;
+      topics?: string[];
+      fork?: boolean;
     }
 
-    const pinnedRepos: PinnedRepo[] = (nodes as GraphQLNode[]).map((node) => ({
-      name: node.name,
-      description: node.description || "No description provided.",
-      url: node.url,
-      stars: node.stargazerCount || 0,
-      language: node.primaryLanguage
-        ? { name: node.primaryLanguage.name, color: node.primaryLanguage.color }
-        : null,
-      topics: node.repositoryTopics?.nodes?.map((t) => t.topic.name) || []
-    }));
+    const repos: RawGitHubRepo[] = await res.json();
 
-    return NextResponse.json(pinnedRepos);
+    if (!Array.isArray(repos) || repos.length === 0) {
+      return NextResponse.json(FALLBACK_REPOS);
+    }
+
+    const mappedRepos: PinnedRepo[] = repos.map((repo) => {
+      const lang = repo.language || (repo.name === "poetry" ? "Python" : null);
+      const color = lang ? LANGUAGE_COLORS[lang] || "#888888" : "#888888";
+
+      // Provide meaningful fallback descriptions if empty on GitHub
+      let description = repo.description;
+      if (!description || description.trim() === "") {
+        if (repo.name === "ateiza") {
+          description = "Portfolio & distributed systems web architecture engine.";
+        } else if (repo.name === "git-ateiza") {
+          description = "Git and Git-Hub and Piscine architecture.";
+        } else if (repo.name === "AteizaTech") {
+          description = "Cybersecurity and Automation system core.";
+        } else {
+          description = "Official repository by AteizaTech.";
+        }
+      }
+
+      // Default topics if none provided on repository
+      let topics = repo.topics && repo.topics.length > 0 ? repo.topics : [];
+      if (topics.length === 0) {
+        if (repo.name.toLowerCase().includes("git")) {
+          topics = ["git", "github", "piscine"];
+        } else if (repo.name.toLowerCase().includes("ateizatech")) {
+          topics = ["cybersecurity", "automation", "python"];
+        } else if (repo.name.toLowerCase().includes("ateiza")) {
+          topics = ["nextjs", "typescript", "systems"];
+        } else if (repo.name.toLowerCase().includes("poetry")) {
+          topics = ["python", "packaging", "automation"];
+        }
+      }
+
+      return {
+        name: repo.name,
+        description,
+        url: repo.html_url,
+        stars: repo.stargazers_count || 0,
+        language: lang ? { name: lang, color } : null,
+        topics,
+      };
+    });
+
+    return NextResponse.json(mappedRepos);
   } catch (error) {
-    console.error("Failed to fetch pinned repos, using fallback:", error);
-    return NextResponse.json(FALLBACK_PINNED_REPOS);
+    console.error("Failed to fetch live repos for AteizaTech:", error);
+    return NextResponse.json(FALLBACK_REPOS);
   }
 }

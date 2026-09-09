@@ -81,31 +81,40 @@ export default function ProjectsLedger() {
         // Populate fallback mock repos for testing UI when offline/blocked
         setRepos([
           {
-            name: "hntr-ospr-drop",
-            description: "An advanced sandbox compiler environment optimized for agentic operations.",
-            html_url: "https://github.com/AteizaTech/hntr-ospr-drop",
+            name: "AteizaTech",
+            description: "Cybersecurity and Automation, threat detection pipelines, and autonomous SecOps workflows.",
+            html_url: "https://github.com/AteizaTech/AteizaTech",
             updated_at: new Date().toISOString(),
-            language: "TypeScript",
+            language: "Python",
             fork: false,
             size: 1048
           },
           {
-            name: "hntr-pwr-river",
-            description: "A distributed message streaming queue with multi-region replication.",
-            html_url: "https://github.com/AteizaTech/hntr-pwr-river",
+            name: "git-ateiza",
+            description: "Git and Git-Hub and Piscine architecture, interactive learning environment.",
+            html_url: "https://github.com/AteizaTech/git-ateiza",
             updated_at: new Date().toISOString(),
-            language: "Go",
+            language: "TypeScript",
             fork: false,
-            size: 2048
+            size: 2986
           },
           {
-            name: "antigravity-core",
-            description: "Core AI agent task runner.",
-            html_url: "https://github.com/AteizaTech/antigravity-core",
+            name: "ateiza",
+            description: "Portfolio & distributed systems web architecture engine.",
+            html_url: "https://github.com/AteizaTech/ateiza",
             updated_at: new Date().toISOString(),
-            language: "Rust",
+            language: "TypeScript",
             fork: false,
-            size: 4096
+            size: 1024
+          },
+          {
+            name: "poetry",
+            description: "Python packaging and dependency management made easy with automated workflows.",
+            html_url: "https://github.com/AteizaTech/poetry",
+            updated_at: new Date().toISOString(),
+            language: "Python",
+            fork: true,
+            size: 25183
           }
         ]);
       } finally {

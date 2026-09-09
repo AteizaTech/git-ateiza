@@ -10,13 +10,13 @@ interface Message {
 
 const KNOWLEDGE_BASE: Record<string, string> = {
   default:
-    "I am AteizaTech's system agent. You can query me about distributed architectures, past projects, academic research, or how to get in touch.",
+    "I am AteizaTech's system agent. You can query me about AI cybersecurity automation, autonomous threat detection, zero-trust architectures, past projects, or how to get in touch.",
   projects:
     "AteizaTech's flagship architectures include HNTR OSPR DROP (sandbox compiler), HNTR PWR River (distributed streaming queue), AgriLink D2C, Aeneas Restorer, and Helix DNS Firewall.",
   stack:
-    "Core competencies include Rust (Tokio), Go, TypeScript/Next.js, WebAssembly, distributed consensus (Raft), and low-latency network telemetry.",
+    "Core competencies include AI Cybersecurity Automation, Zero-Trust Architecture, Autonomous Threat Detection, Rust (Tokio), Go, Python (PyTorch), and low-latency network telemetry.",
   experience:
-    "Currently Senior Systems Architect at Antigravity Systems Labs. Previously at AgriLink Technologies. Holds an M.Sc. in Distributed Systems & Parallel Computing.",
+    "Currently Senior Systems & Security Automation Architect at Antigravity Systems Labs. Previously at AgriLink Technologies. Holds an M.Sc. in Distributed Systems & Parallel Computing.",
   contact:
     "You can reach AteizaTech directly via email at contact@ateizatech.dev or download the PDF resume from the contact terminal."
 };

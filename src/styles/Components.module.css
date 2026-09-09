@@ -82,6 +82,40 @@
 }
 
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px -3px rgba(0, 242, 254, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px 2px rgba(0, 242, 254, 0.25);
+  }
+}
+
+@keyframes pulseVioletGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px -3px rgba(161, 84, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px 2px rgba(161, 84, 255, 0.25);
+  }
+}
+
+@keyframes terminalBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* ==========================================================================
    Hero Matrix
    ========================================================================== */
@@ -92,10 +126,10 @@
   align-items: flex-start;
   max-width: var(--max-width);
   margin: 0 auto;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 200ms;
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 100ms;
 }
 
 .heroGreeting {

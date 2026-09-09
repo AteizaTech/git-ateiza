@@ -187,6 +187,15 @@
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+@keyframes pulseVioletGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px -3px rgba(161, 84, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px 2px rgba(161, 84, 255, 0.25);
+  }
+}
+
 .eduGatewayCard:hover {
   border-color: var(--accent-violet);
   transform: translateY(-4px);
