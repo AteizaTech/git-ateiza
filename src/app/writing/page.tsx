@@ -109,8 +109,17 @@ export default function WritingArchive() {
         const json = await res.json();
         const edges = json?.data?.publication?.posts?.edges;
 
+        interface PostEdge {
+          node: {
+            title: string;
+            brief?: string | null;
+            url: string;
+            publishedAt: string;
+          };
+        }
+
         if (edges && Array.isArray(edges) && edges.length > 0) {
-          const formatted: Article[] = edges.map((e: any) => ({
+          const formatted: Article[] = (edges as PostEdge[]).map((e) => ({
             title: e.node.title,
             brief: e.node.brief || "Click to read full article.",
             url: e.node.url,

@@ -118,7 +118,18 @@ export async function GET() {
       throw new Error("No pinned items returned from GitHub GraphQL");
     }
 
-    const pinnedRepos: PinnedRepo[] = nodes.map((node: any) => ({
+    interface GraphQLNode {
+      name: string;
+      description?: string | null;
+      url: string;
+      stargazerCount?: number;
+      primaryLanguage?: { name: string; color: string } | null;
+      repositoryTopics?: {
+        nodes?: Array<{ topic: { name: string } }>;
+      };
+    }
+
+    const pinnedRepos: PinnedRepo[] = (nodes as GraphQLNode[]).map((node) => ({
       name: node.name,
       description: node.description || "No description provided.",
       url: node.url,
@@ -126,7 +137,7 @@ export async function GET() {
       language: node.primaryLanguage
         ? { name: node.primaryLanguage.name, color: node.primaryLanguage.color }
         : null,
-      topics: node.repositoryTopics?.nodes?.map((t: any) => t.topic.name) || []
+      topics: node.repositoryTopics?.nodes?.map((t) => t.topic.name) || []
     }));
 
     return NextResponse.json(pinnedRepos);

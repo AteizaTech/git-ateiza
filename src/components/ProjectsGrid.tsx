@@ -18,8 +18,9 @@ export default function ProjectsGrid() {
         }
         const data: PinnedRepo[] = await res.json();
         setRepos(data);
-      } catch (err: any) {
-        setError(err.message || "An unexpected error occurred");
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : "An unexpected error occurred";
+        setError(message);
       } finally {
         setLoading(false);
       }

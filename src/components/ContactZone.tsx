@@ -28,7 +28,7 @@ export default function ContactZone() {
         <div>
           <div className={styles.heroGreeting}>[ ESTABLISH CHANNEL CONNECTION ]</div>
           <h2 className={styles.heroName} style={{ fontSize: "2.5rem", margin: "10px 0" }}>
-            Let's build something bulletproof.
+            Let&apos;s build something bulletproof.
           </h2>
           <p className={styles.heroBio} style={{ margin: "16px auto", maxWidth: "600px" }}>
             Open for full-time engineering team integration, distributed core pipeline contract work, or high-performance architectural systems auditing.

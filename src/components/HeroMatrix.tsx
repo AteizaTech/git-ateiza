@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import styles from "../styles/Components.module.css";
 
 export default function HeroMatrix() {

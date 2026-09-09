@@ -17,12 +17,18 @@ interface GitRepo {
   size: number;
 }
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export default function ProjectsLedger() {
   const [repos, setRepos] = useState<GitRepo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [terminalLogs, setTerminalLogs] = useState<string[]>([]);
 
   useEffect(() => {
+    const addLog = (log: string) => {
+      setTerminalLogs((prev) => [...prev, log]);
+    };
+
     async function fetchActiveLab() {
       addLog("[$] ssh -T git@github.com");
       await delay(400);
@@ -69,8 +75,9 @@ export default function ProjectsLedger() {
         addLog(`[$] mapping ledger with ${filtered.length} active pipelines.`);
 
         setRepos(filtered);
-      } catch (err: any) {
-        addLog(`[!] ERROR: Failed to pull active repositories: ${err.message}`);
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : String(err);
+        addLog(`[!] ERROR: Failed to pull active repositories: ${message}`);
         // Populate fallback mock repos for testing UI when offline/blocked
         setRepos([
           {
@@ -108,12 +115,6 @@ export default function ProjectsLedger() {
 
     fetchActiveLab();
   }, []);
-
-  const addLog = (log: string) => {
-    setTerminalLogs((prev) => [...prev, log]);
-  };
-
-  const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
   return (
     <div className={homeStyles.pageContainer}>

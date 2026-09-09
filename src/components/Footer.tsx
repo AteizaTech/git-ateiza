@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import homeStyles from "../../styles/Home.module.css";
+import homeStyles from "../styles/Home.module.css";
 
 export default function Footer() {
     return (
