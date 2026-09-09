@@ -18,7 +18,7 @@ export default function ExperienceArchive() {
       <header className={homeStyles.header}>
         <div className={homeStyles.headerInner}>
           <Link href="/" className={homeStyles.logo}>
-            <span className={homeStyles.logoIcon}>◬</span> IamAdedo.sys
+            <span className={homeStyles.logoIcon}>◬</span> AteizaTech.sys
           </Link>
           <nav className={homeStyles.nav}>
             <Link href="/" className={homeStyles.navLink}>
@@ -82,10 +82,10 @@ export default function ExperienceArchive() {
         <div className={homeStyles.footerInner}>
           <div>
             <Link href="/" className={homeStyles.footerLogo}>
-              IamAdedo // distributed systems
+              AteizaTech // distributed systems
             </Link>
           </div>
-          <div>© {new Date().getFullYear()} IamAdedo. All Rights Reserved.</div>
+          <div>© {new Date().getFullYear()} AteizaTech. All Rights Reserved.</div>
         </div>
       </footer>
     </div>

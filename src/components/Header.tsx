@@ -17,7 +17,7 @@ export default function Header() {
         <header className={homeStyles.header}>
             <div className={homeStyles.headerInner}>
                 <Link href="/" className={homeStyles.logo}>
-                    <span className={homeStyles.logoIcon}>◬</span> IamAdedo.sys
+                    <span className={homeStyles.logoIcon}>◬</span> AteizaTech.sys
                 </Link>
                 <nav className={homeStyles.nav}>
                     <Link href="/" className={homeStyles.navLink}>

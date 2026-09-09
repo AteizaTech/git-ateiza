@@ -8,7 +8,7 @@ export default function HeroMatrix() {
       <div className={styles.heroGreeting}>[ SYSTEM INITIALIZED SUCCESSFULLY ]</div>
       
       <h1 className={styles.heroName}>
-        Hi, I am <span className="dual-gradient-text">IamAdedo</span>.
+        Hi, I am <span className="dual-gradient-text">AteizaTech</span>.
       </h1>
 
       <div className={styles.heroSpecs}>

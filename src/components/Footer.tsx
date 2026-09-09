@@ -9,10 +9,10 @@ export default function Footer() {
             <div className={homeStyles.footerInner}>
                 <div>
                     <Link href="/" className={homeStyles.footerLogo}>
-                        IamAdedo // distributed systems
+                        AteizaTech // distributed systems
                     </Link>
                 </div>
-                <div>© {new Date().getFullYear()} IamAdedo. All Rights Reserved.</div>
+                <div>© {new Date().getFullYear()} AteizaTech. All Rights Reserved.</div>
             </div>
         </footer>
     );

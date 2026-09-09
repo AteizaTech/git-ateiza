@@ -13,7 +13,7 @@ const FALLBACK_PINNED_REPOS: PinnedRepo[] = [
   {
     name: "HNTR OSPR DROP",
     description: "An advanced sandbox compiler environment optimized for agentic operations and low-memory execution runtimes.",
-    url: "https://github.com/IamAdedo/hntr-ospr-drop",
+    url: "https://github.com/AteizaTech/hntr-ospr-drop",
     stars: 142,
     language: { name: "TypeScript", color: "#3178c6" },
     topics: ["compiler", "sandbox", "security", "webassembly"]
@@ -21,7 +21,7 @@ const FALLBACK_PINNED_REPOS: PinnedRepo[] = [
   {
     name: "HNTR PWR River",
     description: "A distributed message streaming queue with multi-region transaction replication and sub-millisecond persistence layers.",
-    url: "https://github.com/IamAdedo/hntr-pwr-river",
+    url: "https://github.com/AteizaTech/hntr-pwr-river",
     stars: 98,
     language: { name: "Go", color: "#00ADD8" },
     topics: ["distributed-systems", "message-queue", "tokio", "replication"]
@@ -29,7 +29,7 @@ const FALLBACK_PINNED_REPOS: PinnedRepo[] = [
   {
     name: "antigravity-core",
     description: "The core engine executing AI programming tasks with secure sandboxing and real-time terminal sync.",
-    url: "https://github.com/IamAdedo/antigravity-core",
+    url: "https://github.com/AteizaTech/antigravity-core",
     stars: 231,
     language: { name: "Rust", color: "#dea584" },
     topics: ["rust", "agentic-coding", "sandbox", "async"]
@@ -37,7 +37,7 @@ const FALLBACK_PINNED_REPOS: PinnedRepo[] = [
   {
     name: "agrilink-d2c",
     description: "Direct-to-consumer digital marketplace connecting regional farmers and local vendors with consumers.",
-    url: "https://github.com/IamAdedo/agrilink-d2c",
+    url: "https://github.com/AteizaTech/agrilink-d2c",
     stars: 45,
     language: { name: "TypeScript", color: "#3178c6" },
     topics: ["nextjs", "react", "mapbox", "postgresql"]
@@ -45,7 +45,7 @@ const FALLBACK_PINNED_REPOS: PinnedRepo[] = [
   {
     name: "aeneas-restorer",
     description: "Deep learning sequence-to-sequence model restoring missing characters and dating ancient Latin inscriptions.",
-    url: "https://github.com/IamAdedo/aeneas-restorer",
+    url: "https://github.com/AteizaTech/aeneas-restorer",
     stars: 64,
     language: { name: "Python", color: "#3572A5" },
     topics: ["pytorch", "nlp", "transformers", "latin"]
@@ -53,7 +53,7 @@ const FALLBACK_PINNED_REPOS: PinnedRepo[] = [
   {
     name: "helix-dns",
     description: "High-performance local DNS firewall and ad routing proxy written in Rust using the Tokio async runtime.",
-    url: "https://github.com/IamAdedo/helix-dns",
+    url: "https://github.com/AteizaTech/helix-dns",
     stars: 52,
     language: { name: "Rust", color: "#dea584" },
     topics: ["rust", "tokio", "dns", "firewall"]
@@ -70,7 +70,7 @@ export async function GET() {
 
   const query = `
     query {
-      user(login: "IamAdedo") {
+      user(login: "AteizaTech") {
         pinnedItems(first: 6, types: REPOSITORY) {
           nodes {
             ... on Repository {

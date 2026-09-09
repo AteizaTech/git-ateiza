@@ -5,7 +5,7 @@ import styles from "../styles/Components.module.css";
 
 export default function ContactZone() {
   const [copied, setCopied] = useState<boolean>(false);
-  const emailAddress = "contact@iamadedo.dev";
+  const emailAddress = "contact@ateizatech.dev";
 
   const handleCopyEmail = async () => {
     try {
@@ -56,7 +56,7 @@ export default function ContactZone() {
           </a>
           <a
             href="/resume.pdf"
-            download="IamAdedo_Resume.pdf"
+            download="AteizaTech_Resume.pdf"
             onClick={handleResumeClick}
             className={styles.btnSecondary}
             id="download-resume-btn"

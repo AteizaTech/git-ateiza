@@ -34,10 +34,10 @@ export default function ProjectsLedger() {
       await delay(400);
       addLog("[$] connection established. host: api.github.com");
       await delay(300);
-      addLog("[$] querying user/IamAdedo/repos?sort=updated");
+      addLog("[$] querying user/AteizaTech/repos?sort=updated");
 
       try {
-        const res = await fetch("https://api.github.com/users/IamAdedo/repos?sort=updated&per_page=30");
+        const res = await fetch("https://api.github.com/users/AteizaTech/repos?sort=updated&per_page=30");
         if (!res.ok) {
           throw new Error(`GitHub API returned status ${res.status}`);
         }
@@ -83,7 +83,7 @@ export default function ProjectsLedger() {
           {
             name: "hntr-ospr-drop",
             description: "An advanced sandbox compiler environment optimized for agentic operations.",
-            html_url: "https://github.com/IamAdedo/hntr-ospr-drop",
+            html_url: "https://github.com/AteizaTech/hntr-ospr-drop",
             updated_at: new Date().toISOString(),
             language: "TypeScript",
             fork: false,
@@ -92,7 +92,7 @@ export default function ProjectsLedger() {
           {
             name: "hntr-pwr-river",
             description: "A distributed message streaming queue with multi-region replication.",
-            html_url: "https://github.com/IamAdedo/hntr-pwr-river",
+            html_url: "https://github.com/AteizaTech/hntr-pwr-river",
             updated_at: new Date().toISOString(),
             language: "Go",
             fork: false,
@@ -101,7 +101,7 @@ export default function ProjectsLedger() {
           {
             name: "antigravity-core",
             description: "Core AI agent task runner.",
-            html_url: "https://github.com/IamAdedo/antigravity-core",
+            html_url: "https://github.com/AteizaTech/antigravity-core",
             updated_at: new Date().toISOString(),
             language: "Rust",
             fork: false,
@@ -127,7 +127,7 @@ export default function ProjectsLedger() {
       <header className={homeStyles.header}>
         <div className={homeStyles.headerInner}>
           <Link href="/" className={homeStyles.logo}>
-            <span className={homeStyles.logoIcon}>◬</span> IamAdedo
+            <span className={homeStyles.logoIcon}>◬</span> AteizaTech
           </Link>
           <nav className={homeStyles.nav}>
             <Link href="/" className={homeStyles.navLink}>
@@ -312,10 +312,10 @@ export default function ProjectsLedger() {
         <div className={homeStyles.footerInner}>
           <div>
             <Link href="/" className={homeStyles.footerLogo}>
-              IamAdedo // distributed systems
+              AteizaTech // distributed systems
             </Link>
           </div>
-          <div>© {new Date().getFullYear()} IamAdedo. All Rights Reserved.</div>
+          <div>© {new Date().getFullYear()} AteizaTech. All Rights Reserved.</div>
         </div>
       </footer>
     </div>

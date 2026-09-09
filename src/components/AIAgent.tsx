@@ -10,15 +10,15 @@ interface Message {
 
 const KNOWLEDGE_BASE: Record<string, string> = {
   default:
-    "I am Adedo's system agent. You can query me about distributed architectures, past projects, academic research, or how to get in touch.",
+    "I am AteizaTech's system agent. You can query me about distributed architectures, past projects, academic research, or how to get in touch.",
   projects:
-    "Adedo's flagship architectures include HNTR OSPR DROP (sandbox compiler), HNTR PWR River (distributed streaming queue), AgriLink D2C, Aeneas Restorer, and Helix DNS Firewall.",
+    "AteizaTech's flagship architectures include HNTR OSPR DROP (sandbox compiler), HNTR PWR River (distributed streaming queue), AgriLink D2C, Aeneas Restorer, and Helix DNS Firewall.",
   stack:
     "Core competencies include Rust (Tokio), Go, TypeScript/Next.js, WebAssembly, distributed consensus (Raft), and low-latency network telemetry.",
   experience:
     "Currently Senior Systems Architect at Antigravity Systems Labs. Previously at AgriLink Technologies. Holds an M.Sc. in Distributed Systems & Parallel Computing.",
   contact:
-    "You can reach Adedo directly via email at contact@iamadedo.dev or download the PDF resume from the contact terminal."
+    "You can reach AteizaTech directly via email at contact@ateizatech.dev or download the PDF resume from the contact terminal."
 };
 
 function getResponse(query: string): string {
@@ -35,7 +35,7 @@ function getResponse(query: string): string {
   if (lower.includes("contact") || lower.includes("email") || lower.includes("hire") || lower.includes("reach")) {
     return KNOWLEDGE_BASE.contact;
   }
-  return "System acknowledgment: Query indexed. Feel free to explore the Projects and Writing sections for in-depth architectural telemetry, or reach out at contact@iamadedo.dev.";
+  return "System acknowledgment: Query indexed. Feel free to explore the Projects and Writing sections for in-depth architectural telemetry, or reach out at contact@ateizatech.dev.";
 }
 
 export default function AIAgent() {
@@ -44,7 +44,7 @@ export default function AIAgent() {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "agent",
-      text: "System initialized. Ask me anything about IamAdedo's systems, projects, or technical qualifications."
+      text: "System initialized. Ask me anything about AteizaTech's systems, projects, or technical qualifications."
     }
   ]);
 
@@ -85,7 +85,7 @@ export default function AIAgent() {
             <div className={styles.chatHeader}>
               <div className={styles.chatTitle}>
                 <span className={styles.pulseIndicator} />
-                <span>IamAdedo.ai // Terminal</span>
+                <span>AteizaTech.ai // Terminal</span>
               </div>
               <button
                 type="button"

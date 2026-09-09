@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "IamAdedo | Distributed Systems & High-Performance Web Architect",
-  description: "Portfolio of IamAdedo, featuring high-performance distributed systems engineering, edge computing layouts, and systems programming.",
-  keywords: ["IamAdedo", "Systems Engineer", "Next.js Portfolio", "Distributed Systems", "Rust Developer", "High Performance Web"],
-  authors: [{ name: "IamAdedo" }],
+  title: "AteizaTech | Distributed Systems & High-Performance Web Architect",
+  description: "Portfolio of AteizaTech, featuring high-performance distributed systems engineering, edge computing layouts, and systems programming.",
+  keywords: ["AteizaTech", "Systems Engineer", "Next.js Portfolio", "Distributed Systems", "Rust Developer", "High Performance Web"],
+  authors: [{ name: "AteizaTech" }],
   openGraph: {
-    title: "IamAdedo | Systems & Web Architect",
+    title: "AteizaTech | Systems & Web Architect",
     description: "Sleek, high-performance developer portfolio built under sub-millisecond execution constraints.",
     type: "website",
-    url: "https://iamadedo.dev"
+    url: "https://ateizatech.dev"
   }
 };
 

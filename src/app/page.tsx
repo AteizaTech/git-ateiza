@@ -24,7 +24,7 @@ export default function Home() {
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <Link href="/" className={styles.logo} id="nav-logo">
-            <span className={styles.logoIcon}>◬</span> IamAdedo
+            <span className={styles.logoIcon}>◬</span> AteizaTech
           </Link>
           <nav className={styles.nav}>
             <a href="#hero" className={styles.navLink}>
@@ -103,12 +103,12 @@ export default function Home() {
         <div className={styles.footerInner}>
           <div>
             <Link href="/" className={styles.footerLogo}>
-              IamAdedo // distributed systems
+              AteizaTech // distributed systems
             </Link>
           </div>
           <div className={styles.footerSocials}>
             <a
-              href="https://github.com/IamAdedo"
+              href="https://github.com/AteizaTech"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialLink}
@@ -135,7 +135,7 @@ export default function Home() {
               LinkedIn
             </a>
           </div>
-          <div>© {new Date().getFullYear()} IamAdedo. All Rights Reserved.</div>
+          <div>© {new Date().getFullYear()} AteizaTech. All Rights Reserved.</div>
         </div>
       </footer>
 
